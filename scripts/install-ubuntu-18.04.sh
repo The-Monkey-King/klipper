@@ -1,5 +1,6 @@
 #!/bin/bash
 # This script installs Klipper on an Ubuntu 18.04 machine with Octoprint
+# using Python3, not Python2
 
 PYTHONDIR="${HOME}/klippy-env"
 SYSTEMDDIR="/etc/systemd/system"
@@ -10,7 +11,7 @@ KLIPPER_GROUP=$KLIPPER_USER
 install_packages()
 {
     # Packages for python cffi
-    PKGLIST="python-virtualenv virtualenv python-dev libffi-dev build-essential"
+    PKGLIST="python3-virtualenv virtualenv python3-dev libffi-dev build-essential"
     # kconfig requirements
     PKGLIST="${PKGLIST} libncurses-dev"
     # hub-ctrl
@@ -39,7 +40,7 @@ create_virtualenv()
     [ ! -d ${PYTHONDIR} ] && virtualenv ${PYTHONDIR}
 
     # Install/update dependencies
-    ${PYTHONDIR}/bin/pip install -r ${SRCDIR}/scripts/klippy-requirements.txt
+    ${PYTHONDIR}/bin/pip3 install -r ${SRCDIR}/scripts/klippy-requirements.txt
 }
 
 # Step 3: Install startup script
